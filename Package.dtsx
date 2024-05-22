@@ -1,0 +1,412 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="5/22/2024 11:46:14 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="D031227"
+  DTS:CreatorName="someone"
+  DTS:DTSID="{830E0FDF-6703-4928-8D86-6B1EA72DA118}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5270.0"
+  DTS:LocaleID="1049"
+  DTS:ObjectName="Package"
+  DTS:PackageType="5"
+  DTS:VersionBuild="2"
+  DTS:VersionGUID="{361FEAF2-C872-4C35-85E5-DFD3DC425E60}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[url]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{D8AC023E-8F91-4D45-9F58-2807245DE616}"
+      DTS:ObjectName="url">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=url;Provider=SQLNCLI11.1;Integrated Security=SSPI;Application Name=SSIS-Package-{D8AC023E-8F91-4D45-9F58-2807245DE616}url;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[url 1]"
+      DTS:CreationName="MSOLAP100"
+      DTS:DTSID="{B4095F0F-00A9-45BE-A92C-0F330C90539E}"
+      DTS:ObjectName="url 1">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="0"
+          DTS:ConnectRetryInterval="0"
+          DTS:ConnectionString="Data Source=url;Provider=MSOLAP.8;Integrated Security=SSPI;Impersonation Level=Impersonate;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[url.db]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{93AF2A6C-8C2D-4DC2-A181-ECA429B841FC}"
+      DTS:ObjectName="url.db">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=url;Initial Catalog=db;Provider=SQLNCLI11.1;Integrated Security=SSPI;Application Name=SSIS-Package-{93AF2A6C-8C2D-4DC2-A181-ECA429B841FC}url.db;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Задача потока данных"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Задача потока данных"
+      DTS:DTSID="{8B6A8F28-1D22-444B-9BE5-BDBE5D3B3036}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Задача потока данных"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Задача потока данных\Dimension Processing"
+              componentClassID="Microsoft.PXPipelineProcessDimension"
+              description="Dimension Processing"
+              name="Dimension Processing">
+              <properties>
+                <property
+                  dataType="System.String"
+                  name="ObjectRef">&lt;Object xmlns="http://schemas.microsoft.com/analysisservices/2003/engine"&gt;
+  &lt;DatabaseID&gt;rs_olap&lt;/DatabaseID&gt;
+  &lt;DimensionID&gt;Assortment&lt;/DimensionID&gt;
+&lt;/Object&gt;</property>
+                <property
+                  dataType="System.Boolean"
+                  name="UseDefaultConfiguration">true</property>
+                <property
+                  dataType="System.Int32"
+                  name="KeyErrorLimit">0</property>
+                <property
+                  dataType="System.Null"
+                  name="KeyErrorLogFile" />
+                <property
+                  dataType="System.Int32"
+                  name="KeyErrorAction"
+                  typeConverter="KeyErrorAction">0</property>
+                <property
+                  dataType="System.Int32"
+                  name="KeyErrorLimitAction"
+                  typeConverter="KeyErrorLimitAction">0</property>
+                <property
+                  dataType="System.Int32"
+                  name="KeyNotFound"
+                  typeConverter="KeyErrorHandling">0</property>
+                <property
+                  dataType="System.Int32"
+                  name="KeyDuplicate"
+                  typeConverter="KeyErrorHandling">0</property>
+                <property
+                  dataType="System.Int32"
+                  name="NullKeyConvertedToUnknown"
+                  typeConverter="KeyErrorHandling">0</property>
+                <property
+                  dataType="System.Int32"
+                  name="NullKeyNotAllowed"
+                  typeConverter="KeyErrorHandling">0</property>
+                <property
+                  dataType="System.Int32"
+                  name="ProcessType"
+                  typeConverter="ProcessType">1</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Задача потока данных\Dimension Processing.Connections[Analysis Services Connection]"
+                  connectionManagerID="Package.ConnectionManagers[url 1]"
+                  connectionManagerRefId="Package.ConnectionManagers[url 1]"
+                  description="Analysis Services Connection"
+                  name="Analysis Services Connection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Задача потока данных\Dimension Processing.Inputs[AnalysisServicesServerInput]"
+                  hasSideEffects="true"
+                  name="AnalysisServicesServerInput">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Задача потока данных\Dimension Processing.Inputs[AnalysisServicesServerInput].Columns[id]"
+                      cachedDataType="i4"
+                      cachedName="id"
+                      externalMetadataColumnId="Package\Задача потока данных\Dimension Processing.Inputs[AnalysisServicesServerInput].ExternalColumns[Id.Key]"
+                      lineageId="Package\Задача потока данных\Источник &quot;OLE DB&quot;.Outputs[Выход источника &quot;OLE DB&quot;].Columns[id]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          name="Binding">&lt;Binding xmlns="http://schemas.microsoft.com/analysisservices/2003/engine" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"&gt;&lt;DatabaseID&gt;rs_olap&lt;/DatabaseID&gt;&lt;DimensionID&gt;Assortment&lt;/DimensionID&gt;&lt;AttributeID&gt;Id&lt;/AttributeID&gt;&lt;KeyColumns&gt;&lt;KeyColumn&gt;&lt;Source xsi:type="ColumnBinding"&gt;&lt;TableID/&gt;&lt;ColumnID&gt;id&lt;/ColumnID&gt;&lt;/Source&gt;&lt;/KeyColumn&gt;&lt;/KeyColumns&gt;&lt;NameColumn&gt;&lt;Source xsi:type="ColumnBinding"&gt;&lt;TableID/&gt;&lt;ColumnID&gt;id&lt;/ColumnID&gt;&lt;/Source&gt;&lt;/NameColumn&gt;&lt;/Binding&gt;</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Задача потока данных\Dimension Processing.Inputs[AnalysisServicesServerInput].Columns[name]"
+                      cachedCodepage="1251"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="name"
+                      externalMetadataColumnId="Package\Задача потока данных\Dimension Processing.Inputs[AnalysisServicesServerInput].ExternalColumns[Assortment.Key]"
+                      lineageId="Package\Задача потока данных\Источник &quot;OLE DB&quot;.Outputs[Выход источника &quot;OLE DB&quot;].Columns[name]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          name="Binding">&lt;Binding xmlns="http://schemas.microsoft.com/analysisservices/2003/engine" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"&gt;&lt;DatabaseID&gt;rs_olap&lt;/DatabaseID&gt;&lt;DimensionID&gt;Assortment&lt;/DimensionID&gt;&lt;AttributeID&gt;Name&lt;/AttributeID&gt;&lt;KeyColumns&gt;&lt;KeyColumn&gt;&lt;Source xsi:type="ColumnBinding"&gt;&lt;TableID/&gt;&lt;ColumnID&gt;name&lt;/ColumnID&gt;&lt;/Source&gt;&lt;/KeyColumn&gt;&lt;/KeyColumns&gt;&lt;NameColumn&gt;&lt;Source xsi:type="ColumnBinding"&gt;&lt;TableID/&gt;&lt;ColumnID&gt;name&lt;/ColumnID&gt;&lt;/Source&gt;&lt;/NameColumn&gt;&lt;/Binding&gt;</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns>
+                    <externalMetadataColumn
+                      refId="Package\Задача потока данных\Dimension Processing.Inputs[AnalysisServicesServerInput].ExternalColumns[Id.Key]"
+                      dataType="i4"
+                      name="Id.Key">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          name="BindingItem">&lt;KeyColumn&gt;&lt;Source xsi:type="ColumnBinding"&gt;&lt;TableID/&gt;&lt;ColumnID&gt;?Id.Key?&lt;/ColumnID&gt;&lt;/Source&gt;&lt;/KeyColumn&gt;&lt;/KeyColumns&gt;&lt;NameColumn&gt;&lt;Source xsi:type="ColumnBinding"&gt;&lt;TableID/&gt;&lt;ColumnID&gt;?Id.Key?&lt;/ColumnID&gt;&lt;/Source&gt;&lt;/NameColumn&gt;</property>
+                        <property
+                          dataType="System.String"
+                          name="Binding">&lt;Binding xmlns="http://schemas.microsoft.com/analysisservices/2003/engine" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"&gt;&lt;DatabaseID&gt;rs_olap&lt;/DatabaseID&gt;&lt;DimensionID&gt;Assortment&lt;/DimensionID&gt;&lt;AttributeID&gt;Id&lt;/AttributeID&gt;&lt;KeyColumns&gt;&lt;KeyColumn&gt;&lt;Source xsi:type="ColumnBinding"&gt;&lt;TableID/&gt;&lt;ColumnID&gt;?Id.Key?&lt;/ColumnID&gt;&lt;/Source&gt;&lt;/KeyColumn&gt;&lt;/KeyColumns&gt;&lt;NameColumn&gt;&lt;Source xsi:type="ColumnBinding"&gt;&lt;TableID/&gt;&lt;ColumnID&gt;?Id.Key?&lt;/ColumnID&gt;&lt;/Source&gt;&lt;/NameColumn&gt;&lt;/Binding&gt;</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Задача потока данных\Dimension Processing.Inputs[AnalysisServicesServerInput].ExternalColumns[Assortment.Key]"
+                      dataType="wstr"
+                      length="100"
+                      name="Assortment.Key">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          name="BindingItem">&lt;KeyColumn&gt;&lt;Source xsi:type="ColumnBinding"&gt;&lt;TableID/&gt;&lt;ColumnID&gt;?Assortment.Key?&lt;/ColumnID&gt;&lt;/Source&gt;&lt;/KeyColumn&gt;&lt;/KeyColumns&gt;&lt;NameColumn&gt;&lt;Source xsi:type="ColumnBinding"&gt;&lt;TableID/&gt;&lt;ColumnID&gt;?Assortment.Key?&lt;/ColumnID&gt;&lt;/Source&gt;&lt;/NameColumn&gt;</property>
+                        <property
+                          dataType="System.String"
+                          name="Binding">&lt;Binding xmlns="http://schemas.microsoft.com/analysisservices/2003/engine" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"&gt;&lt;DatabaseID&gt;rs_olap&lt;/DatabaseID&gt;&lt;DimensionID&gt;Assortment&lt;/DimensionID&gt;&lt;AttributeID&gt;Name&lt;/AttributeID&gt;&lt;KeyColumns&gt;&lt;KeyColumn&gt;&lt;Source xsi:type="ColumnBinding"&gt;&lt;TableID/&gt;&lt;ColumnID&gt;?Assortment.Key?&lt;/ColumnID&gt;&lt;/Source&gt;&lt;/KeyColumn&gt;&lt;/KeyColumns&gt;&lt;NameColumn&gt;&lt;Source xsi:type="ColumnBinding"&gt;&lt;TableID/&gt;&lt;ColumnID&gt;?Assortment.Key?&lt;/ColumnID&gt;&lt;/Source&gt;&lt;/NameColumn&gt;&lt;/Binding&gt;</property>
+                      </properties>
+                    </externalMetadataColumn>
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+            </component>
+            <component
+              refId="Package\Задача потока данных\Источник &quot;OLE DB&quot;"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="Источник &quot;OLE DB&quot;;Корпорация Майкрософт. Microsoft SQL Server. (C) Корпорация Майкрософт (Microsoft Corporation). Все права защищены. http://www.microsoft.com/sql/support;7"
+              description="Источник &quot;OLE DB&quot;"
+              name="Источник &quot;OLE DB&quot;"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Время ожидания команды, в секундах. Величина 0 означает неограниченное время ожидания."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Указывает имя объекта базы данных, используемого для открытия набора строк."
+                  name="OpenRowset">[dbo].[assortment]</property>
+                <property
+                  dataType="System.String"
+                  description="Указывает переменную, содержащую имя объекта базы данных, используемого для открытия набора строк."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Команда SQL для выполнения."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="Переменная, содержащая команду SQL для выполнения."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Указывает кодовую страницу столбца, используемую, когда недоступны сведения о кодовой странице из источника данных."
+                  name="DefaultCodePage">1251</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Вызывает безусловное использование значение свойства DefaultCodePage при описании символьных данных."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Указывает используемый режим доступа к базе данных."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="Сопоставления между параметрами в команде SQL и переменными."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Задача потока данных\Источник &quot;OLE DB&quot;.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[url.db]"
+                  connectionManagerRefId="Package.ConnectionManagers[url.db]"
+                  description="Соединение OLE DB среды выполнения, используемое для доступа к базе данных."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Задача потока данных\Источник &quot;OLE DB&quot;.Outputs[Выход источника &quot;OLE DB&quot;]"
+                  name="Выход источника &quot;OLE DB&quot;">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Задача потока данных\Источник &quot;OLE DB&quot;.Outputs[Выход источника &quot;OLE DB&quot;].Columns[id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Преобразование"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Задача потока данных\Источник &quot;OLE DB&quot;.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[id]"
+                      lineageId="Package\Задача потока данных\Источник &quot;OLE DB&quot;.Outputs[Выход источника &quot;OLE DB&quot;].Columns[id]"
+                      name="id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Задача потока данных\Источник &quot;OLE DB&quot;.Outputs[Выход источника &quot;OLE DB&quot;].Columns[name]"
+                      codePage="1251"
+                      dataType="str"
+                      errorOrTruncationOperation="Преобразование"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Задача потока данных\Источник &quot;OLE DB&quot;.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[name]"
+                      length="100"
+                      lineageId="Package\Задача потока данных\Источник &quot;OLE DB&quot;.Outputs[Выход источника &quot;OLE DB&quot;].Columns[name]"
+                      name="name"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Задача потока данных\Источник &quot;OLE DB&quot;.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[id]"
+                      dataType="i4"
+                      name="id" />
+                    <externalMetadataColumn
+                      refId="Package\Задача потока данных\Источник &quot;OLE DB&quot;.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[name]"
+                      codePage="1251"
+                      dataType="str"
+                      length="100"
+                      name="name" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Задача потока данных\Источник &quot;OLE DB&quot;.Outputs[Вывод ошибок источника &quot;OLE DB&quot;]"
+                  isErrorOut="true"
+                  name="Вывод ошибок источника &quot;OLE DB&quot;">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Задача потока данных\Источник &quot;OLE DB&quot;.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[id]"
+                      dataType="i4"
+                      lineageId="Package\Задача потока данных\Источник &quot;OLE DB&quot;.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[id]"
+                      name="id" />
+                    <outputColumn
+                      refId="Package\Задача потока данных\Источник &quot;OLE DB&quot;.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[name]"
+                      codePage="1251"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\Задача потока данных\Источник &quot;OLE DB&quot;.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[name]"
+                      name="name" />
+                    <outputColumn
+                      refId="Package\Задача потока данных\Источник &quot;OLE DB&quot;.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Задача потока данных\Источник &quot;OLE DB&quot;.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Задача потока данных\Источник &quot;OLE DB&quot;.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Задача потока данных\Источник &quot;OLE DB&quot;.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Задача потока данных.Paths[Выход источника &quot;OLE DB&quot;]"
+              endId="Package\Задача потока данных\Dimension Processing.Inputs[AnalysisServicesServerInput]"
+              name="Выход источника &quot;OLE DB&quot;"
+              startId="Package\Задача потока данных\Источник &quot;OLE DB&quot;.Outputs[Выход источника &quot;OLE DB&quot;]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--В данном разделе CDATA содержатся сведения о макете пакета. В данном разделе содержатся сведения о координатах (x,y), ширине и высоте.-->
+<!--В случае возникновения ошибки при редактировании этого раздела вручную его можно удалить. -->
+<!--Пакет можно загрузить обычным образом, но прежние сведения о макете будут утеряны, и конструктор автоматически перераспределит элементы в области конструктора.-->
+<Objects
+  Version="8">
+  <!--Все приведенные ниже узлы будут содержать свойства, не влияющие на поведение среды выполнения.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="190,42"
+          Id="Package\Задача потока данных"
+          TopLeft="415,111" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Задача потока данных">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="173,42"
+          Id="Package\Задача потока данных\Источник &quot;OLE DB&quot;"
+          TopLeft="142,70" />
+        <NodeLayout
+          Size="181,42"
+          Id="Package\Задача потока данных\Dimension Processing"
+          TopLeft="144,204" />
+        <EdgeLayout
+          Id="Package\Задача потока данных.Paths[Выход источника &quot;OLE DB&quot;]"
+          TopLeft="231.5,112">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,92"
+              Start="0,0"
+              End="0,84.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,84.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Задача потока данных\Источник &quot;OLE DB&quot;">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <ConnectionManager
+    design-time-name="Package.ConnectionManagers[url 1]">
+    <ProjectReferenceName></ProjectReferenceName>
+  </ConnectionManager>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
